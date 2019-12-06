@@ -18,7 +18,8 @@ then
   then
     echo "Add tag v$VERSION"
     git push origin refs/tags/v$VERSION
+    npm publish
+  else
+    npm publish --tag beta
   fi
-
-  make publish
 fi
