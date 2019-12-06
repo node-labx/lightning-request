@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Node-LabX/lightning-request.git"
+    "url": "git@github.com:node-labx/lightning-request.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "kk",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Node-LabX/lightning-request/issues"
+    "url": "https://github.com/node-labx/lightning-request/issues"
   },
-  "homepage": "https://github.com/Node-LabX/lightning-request"
+  "homepage": "https://github.com/node-labx/lightning-request"
 }
