@@ -12,9 +12,7 @@ const Response = require('./response');
  * @param {String} options.contentType `contentType` is the data to be sent, default: application/json
  * @param {Number} options.timeout`timeout` specifies the number of milliseconds before the request times out. If the request takes longer than `timeout`, the request will be aborted.
  * @param {String} options.responseType `responseType` indicates the type of data that the server will respond with, default: json
- * @param {Object} options.agentConfig `agentConfig` http.Agent or https.Agent config.
- * @param {Object} options.httpAgent `httpAgent` define a custom agent to be used when performing http requests, respectively, in node.js. This allows options to be added like `keepAlive` that are not enabled by default.
- * @param {Object} options.httpsAgent `httpsAgent` define a custom agent to be used when performing https requests, respectively, in node.js. This allows options to be added like `keepAlive` that are not enabled by default.
+ * @param {Object} options.agent `agent` define a custom agent to be used when performing http/https requests, respectively, in node.js. This allows options to be added like `keepAlive` that are not enabled by default.
  */
 async function request(options) {
   if (!options.url) {
@@ -52,27 +50,7 @@ async function request(options) {
   );
 
   const responseType = options.responseType || 'json';
-  const agentConfig = options.agentConfig || {
-    keepAlive: true,
-    keepAliveMsecs: 1000,
-    maxSockets: 100,
-    maxFreeSockets: 10,
-    timeout: 60000,
-  };
-  let agent;
-  if (protocol === 'http:') {
-    if (options.httpAgent) {
-      agent = options.httpAgent;
-    } else {
-      agent = new http.Agent(agentConfig);
-    }
-  } else if (protocol === 'https:') {
-    if (options.httpsAgent) {
-      agent = options.httpsAgent;
-    } else {
-      agent = new https.Agent(agentConfig);
-    }
-  }
+  const agent = options.agent || (protocol === 'http:' ? http.globalAgent : https.globalAgent);
 
   return new Promise((resolve, reject) => {
     const requestOptions = {
