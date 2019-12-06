@@ -12,7 +12,11 @@ class Response {
   }
 
   json() {
-    return JSON.parse(this.text());
+    try {
+      return JSON.parse(this.text());
+    } catch (error) {
+      return this.text();
+    }
   }
 
   text() {
