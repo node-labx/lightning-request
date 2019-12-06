@@ -2,7 +2,17 @@
 
 ![logo](./logo.png)
 
-### Contributing
+## Install
+
+```
+npm i lightning-request
+```
+
+## Why lightning-request?
+
+lightning-request is the most lightweight HTTP client for Node, it provides a number of extremely useful features.
+
+## Contributing
 
 - Fork this repo
 - Clone your repo
