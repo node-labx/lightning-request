@@ -2,6 +2,8 @@
 
 ⚡ Lightweight Node.js HTTP client.
 
+![logo](./logo.png)
+
 ### Contributing
 
 - Fork this repo
