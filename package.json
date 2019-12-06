@@ -1,5 +1,5 @@
 {
-  "name": "light-request",
+  "name": "lightning-request",
   "version": "0.0.1",
   "description": "Lightweight Node.js HTTP client",
   "main": "index.js",
@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:kk0829/light-request.git"
+    "url": "git@github.com:Node-LabX/lightning-request.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kk0829/light-request/issues"
+    "url": "https://github.com/Node-LabX/lightning-request/issues"
   },
-  "homepage": "https://github.com/kk0829/light-request#readme"
+  "homepage": "https://github.com/Node-LabX/lightning-request"
 }
