@@ -1,6 +1,6 @@
 # light-request
 
-Lightweight Node.js HTTP client
+⚡ Lightweight Node.js HTTP client.
 
 ### Contributing
 
