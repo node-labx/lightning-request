@@ -1,6 +1,6 @@
 {
   "name": "light-request",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Lightweight Node.js HTTP client",
   "main": "index.js",
   "scripts": {
