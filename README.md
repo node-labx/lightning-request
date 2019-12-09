@@ -38,6 +38,40 @@ const request = require('lightning-request');
 })();
 ```
 
+## Request Config
+
+These are the available config options for making requests. Only the url is required. Requests will default to GET if method is not specified.
+
+```
+{
+  // `url` is the server URL that will be used for the request
+  url: 'http://www.example/test',
+
+  // `method` is the request method to be used when making the request
+  method: 'get', // default
+
+  // `headers` are custom headers to be sent
+  headers: {'X-Requested-With': 'XMLHttpRequest'},
+
+  // `data` is the data to be sent as the request body
+  data: {
+    firstName: 'Fred'
+  },
+
+  // `timeout` specifies the number of milliseconds before the request times out.
+  // If the request takes longer than `timeout`, the request will be aborted.
+  timeout: 1000, // default is `15000` (no timeout)
+
+  // `responseType` indicates the type of data that the server will respond with
+  // options are: 'json', 'text'
+  responseType: 'json', // default
+
+  // `agent` define a custom agent to be used when performing http or https requests,
+  // respectively, in node.js. This allows options to be added like `keepAlive` that are not enabled by default.
+  agent: new http.Agent({ keepAlive: true }),
+}
+```
+
 ## Contributing
 
 - Fork this repo
@@ -47,3 +81,7 @@ const request = require('lightning-request');
 - Feel free to add your features
 - Make sure your features are fully tested
 - Open a pull request, and enjoy <3
+
+## License
+
+[MIT](LICENSE)
