@@ -72,6 +72,29 @@ These are the available config options for making requests. Only the url is requ
 }
 ```
 
+## Response Schema
+
+The response for a request contains the following information.
+
+```
+{
+  // `data` is the raw response that was provided by the server
+  data: {},
+
+  // `statusCode` is the HTTP status code from the server response
+  statusCode: 200,
+
+  // `statusMessage` is the HTTP status message from the server response
+  statusMessage: 'OK',
+
+  // `headers` the headers that the server responded with All header names are lower cased
+  headers: {},
+
+  // `body` is the response data that was provided by the server
+  body: {}
+}
+```
+
 ## Contributing
 
 - Fork this repo
