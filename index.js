@@ -9,7 +9,6 @@ const Response = require('./response');
  * @param {String} options.method `method` is the request method to be used when making the request
  * @param {Object} options.headers `headers` are custom headers to be sent
  * @param {Any} options.data `data` is the data to be sent as the request body
- * @param {String} options.contentType `contentType` is the data to be sent, default: application/json
  * @param {Number} options.timeout`timeout` specifies the number of milliseconds before the request times out. If the request takes longer than `timeout`, the request will be aborted.
  * @param {String} options.responseType `responseType` indicates the type of data that the server will respond with, default: json
  * @param {Object} options.agent `agent` define a custom agent to be used when performing http/https requests, respectively, in node.js. This allows options to be added like `keepAlive` that are not enabled by default.
@@ -35,19 +34,19 @@ async function request(options) {
   }
 
   const timeout = options.timeout || 15000;
-  const contentType = options.contentType || 'application/json';
+  const headers = Object.assign(
+    {
+      'Content-Type': 'application/json',
+      'User-Agent': 'Lightweight Node.js HTTP client',
+    },
+    options.headers || {}
+  );
+  const contentType = headers['Content-Type'];
   if (contentType === 'application/json') {
     data = JSON.stringify(data);
   } else if (contentType === 'application/x-www-form-urlencoded') {
     data = qs.stringify(data);
   }
-  const headers = Object.assign(
-    {
-      'Content-Type': contentType,
-      'User-Agent': 'Lightweight Node.js HTTP client',
-    },
-    options.headers || {}
-  );
 
   const responseType = options.responseType || 'json';
   const agent = options.agent || (protocol === 'http:' ? http.globalAgent : https.globalAgent);
