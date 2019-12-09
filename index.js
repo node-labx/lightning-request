@@ -29,10 +29,6 @@ async function request(options) {
   }
 
   const protocol = parsedUrl.protocol;
-  if (['http:', 'https:'].indexOf(protocol) === -1) {
-    throw new Error(`protocol '${protocol}' is not supported.`);
-  }
-
   const timeout = options.timeout || 15000;
   const headers = Object.assign(
     {
@@ -42,12 +38,13 @@ async function request(options) {
     options.headers || {}
   );
   const contentType = headers['Content-Type'];
-  if (Object.prototype.toString.call(data) === '[object Object]') {
-    if (contentType.startsWith('application/json')) {
-      data = JSON.stringify(data);
-    } else if (contentType.startsWith('application/x-www-form-urlencoded')) {
-      data = qs.stringify(data);
-    }
+  if (
+    Object.prototype.toString.call(data) === '[object Object]' &&
+    contentType.startsWith('application/x-www-form-urlencoded')
+  ) {
+    data = qs.stringify(data);
+  } else if (Object.prototype.toString.call(data) !== '[object String]') {
+    data = JSON.stringify(data);
   }
 
   const responseType = options.responseType || 'json';
@@ -93,8 +90,10 @@ async function request(options) {
 
     if (protocol === 'http:') {
       req = http.request(requestOptions, resHandler);
-    } else {
+    } else if (protocol === 'https:') {
       req = https.request(requestOptions, resHandler);
+    } else {
+      throw new Error(`Protocol "${protocol}" not supported. Expected "http:" or "https:"`);
     }
 
     if (timeout) {
