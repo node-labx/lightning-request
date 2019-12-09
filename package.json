@@ -1,6 +1,6 @@
 {
   "name": "lightning-request",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Lightweight Node.js HTTP client",
   "main": "index.js",
   "scripts": {
