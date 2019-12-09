@@ -42,10 +42,12 @@ async function request(options) {
     options.headers || {}
   );
   const contentType = headers['Content-Type'];
-  if (contentType === 'application/json') {
-    data = JSON.stringify(data);
-  } else if (contentType === 'application/x-www-form-urlencoded') {
-    data = qs.stringify(data);
+  if (Object.prototype.toString.call(data) === '[object Object]') {
+    if (contentType.startsWith('application/json')) {
+      data = JSON.stringify(data);
+    } else if (contentType.startsWith('application/x-www-form-urlencoded')) {
+      data = qs.stringify(data);
+    }
   }
 
   const responseType = options.responseType || 'json';
