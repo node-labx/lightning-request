@@ -78,9 +78,6 @@ The response for a request contains the following information.
 
 ```
 {
-  // `data` is the raw response that was provided by the server
-  data: {},
-
   // `statusCode` is the HTTP status code from the server response
   statusCode: 200,
 
