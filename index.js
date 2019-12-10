@@ -62,7 +62,6 @@ async function request(options) {
       agent: agent,
     };
 
-    let req;
     const resHandler = res => {
       const statusCode = res.statusCode;
       let response = new Response({
@@ -88,6 +87,7 @@ async function request(options) {
       });
     };
 
+    let req;
     if (protocol === 'http:') {
       req = http.request(requestOptions, resHandler);
     } else if (protocol === 'https:') {
