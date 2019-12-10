@@ -1,14 +1,14 @@
 class Response {
   constructor(options = {}) {
-    this.data = Buffer.alloc(0); // raw data
+    this.body = Buffer.alloc(0); // raw data
     this.headers = options.headers;
     this.statusCode = options.statusCode;
     this.statusMessage = options.statusMessage;
-    this.body = this.data;
+    this.data = this.body;
   }
 
   addChunk(chunk) {
-    this.data = Buffer.concat([this.data, chunk]);
+    this.body = Buffer.concat([this.body, chunk]);
   }
 
   json() {
@@ -20,11 +20,11 @@ class Response {
   }
 
   text() {
-    return this.data.toString('utf8');
+    return this.body.toString('utf8');
   }
 
   buffer() {
-    return this.data;
+    return this.body;
   }
 }
 

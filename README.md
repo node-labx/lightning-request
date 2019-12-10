@@ -23,15 +23,13 @@ const request = require('lightning-request');
 Then let's make a request in an async function.
 
 ```
-const request = require('lightning-request');
-
 (async function() {
   try {
     const result = await request({
       url: 'https://github.com/node-labx/lightning-request',
     });
     console.log(result.statusCode); // response status code
-    console.log(result.body); // response body
+    console.log(result.data); // response data
   } catch (error) {
     console.log(error);
   }
@@ -45,25 +43,25 @@ These are the available config options for making requests. Only the url is requ
 ```
 {
   // `url` is the server URL that will be used for the request
-  url: 'http://www.example/test',
+  url: 'http://www.example.com/',
 
   // `method` is the request method to be used when making the request
   method: 'get', // default
 
   // `headers` are custom headers to be sent
-  headers: {'X-Requested-With': 'XMLHttpRequest'},
+  headers: {'Content-Type': 'application/json'},
 
   // `data` is the data to be sent as the request body
   data: {
-    firstName: 'Fred'
+    foo: 'bar'
   },
 
   // `timeout` specifies the number of milliseconds before the request times out.
   // If the request takes longer than `timeout`, the request will be aborted.
-  timeout: 1000, // default is `15000` (no timeout)
+  timeout: 1000, // default is `15000` milliseconds
 
   // `responseType` indicates the type of data that the server will respond with
-  // options are: 'json', 'text'
+  // options are: 'json', 'text', 'buffer'
   responseType: 'json', // default
 
   // `agent` define a custom agent to be used when performing http or https requests,
@@ -78,8 +76,8 @@ The response for a request contains the following information.
 
 ```
 {
-  // `data` is the raw buffer data from the server response
-  data: <Buffer >
+  // `body` is the raw buffer data from the server response
+  body: <Buffer >
 
   // `statusCode` is the HTTP status code from the server response
   statusCode: 200,
@@ -90,8 +88,8 @@ The response for a request contains the following information.
   // `headers` the headers that the server responded with All header names are lower cased
   headers: {},
 
-  // `body` is the response data that was provided by the server
-  body: {}
+  // `data` is the response data that was provided by the server
+  data: {}
 }
 ```
 

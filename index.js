@@ -75,11 +75,12 @@ async function request(options) {
       });
       res.on('end', () => {
         if (responseType === 'json' && statusCode === 200) {
-          response.body = response.json();
+          response.data = response.json();
+        } else if (responseType === 'buffer' && statusCode === 200) {
+          response.data = response.buffer();
         } else {
-          response.body = response.text();
+          response.data = response.text();
         }
-
         resolve(response);
       });
       res.on('error', err => {
