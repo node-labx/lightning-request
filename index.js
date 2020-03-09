@@ -13,7 +13,7 @@ const Response = require('./response');
  * @param {String} options.responseType `responseType` indicates the type of data that the server will respond with, default: json
  * @param {Object} options.agent `agent` define a custom agent to be used when performing http/https requests, respectively, in node.js. This allows options to be added like `keepAlive` that are not enabled by default.
  */
-async function request(options) {
+async function request(options = {}) {
   if (!options.url) {
     throw new Error('request param url is required.');
   }
@@ -33,7 +33,7 @@ async function request(options) {
   const headers = Object.assign(
     {
       'Content-Type': 'application/json',
-      'User-Agent': 'Lightweight Node.js HTTP client',
+      'User-Agent': 'lr/0.1.0',
     },
     options.headers || {}
   );

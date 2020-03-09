@@ -4,11 +4,23 @@
   "description": "Lightweight Node.js HTTP client",
   "main": "index.js",
   "scripts": {
+    "test": "NODE_ENV=qa nyc ava --verbose --no-cache",
+    "test:watch": "NODE_ENV=qa nyc ava --verbose --watch --no-cache",
+    "report": "nyc report --reporter=html && open coverage/index.html",
     "release": "sh release.sh"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.js"
+    ]
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:node-labx/lightning-request.git"
+  },
+  "devDependencies": {
+    "ava": "3.4.0",
+    "nyc": "15.0.0"
   },
   "keywords": [],
   "author": "kk",
