@@ -1,11 +1,11 @@
 {
   "name": "lightning-request",
   "version": "0.1.0",
-  "description": "Lightweight Node.js HTTP client",
+  "description": "⚡⚡⚡Lightweight Node.js HTTP client based on http. ",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=qa nyc ava --verbose --no-cache",
-    "test:watch": "NODE_ENV=qa nyc ava --verbose --watch --no-cache",
+    "test": "nyc ava --verbose --no-cache",
+    "test:watch": "nyc ava --verbose --watch --no-cache",
     "report": "nyc report --reporter=html && open coverage/index.html",
     "release": "sh release.sh"
   },
