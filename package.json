@@ -4,8 +4,8 @@
   "description": "⚡⚡⚡Lightweight Node.js HTTP client based on http. ",
   "main": "index.js",
   "scripts": {
-    "test": "nyc ava --verbose --no-cache",
-    "test:watch": "nyc ava --verbose --watch --no-cache",
+    "test": "nyc ava --verbose --no-cache --timeout=1m",
+    "test:watch": "nyc ava --verbose --watch --no-cache --timeout=1m",
     "report": "nyc report --reporter=html && open coverage/index.html",
     "release": "sh release.sh"
   },
