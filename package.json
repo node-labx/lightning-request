@@ -1,14 +1,26 @@
 {
   "name": "lightning-request",
   "version": "0.1.0",
-  "description": "Lightweight Node.js HTTP client",
+  "description": "⚡⚡⚡Lightweight Node.js HTTP client based on http. ",
   "main": "index.js",
   "scripts": {
+    "test": "nyc ava --verbose --no-cache",
+    "test:watch": "nyc ava --verbose --watch --no-cache",
+    "report": "nyc report --reporter=html && open coverage/index.html",
     "release": "sh release.sh"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.js"
+    ]
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:node-labx/lightning-request.git"
+  },
+  "devDependencies": {
+    "ava": "3.4.0",
+    "nyc": "15.0.0"
   },
   "keywords": [],
   "author": "kk",
