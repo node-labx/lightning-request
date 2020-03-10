@@ -2,7 +2,10 @@ const http = require('http');
 const https = require('https');
 const { URL } = require('url');
 const qs = require('querystring');
-const Response = require('./response');
+const Response = require('./lib/response');
+const createError = require('./lib/createError');
+const enhanceError = require('./lib/enhanceError');
+const pkg = require('./package.json');
 
 /**
  * @param {String} options.url `url` is the server URL that will be used for the request
@@ -33,7 +36,7 @@ async function request(options = {}) {
   const headers = Object.assign(
     {
       'Content-Type': 'application/json',
-      'User-Agent': 'lr/0.1.0',
+      'User-Agent': `lr/${pkg.version}`,
     },
     options.headers || {}
   );
@@ -84,7 +87,7 @@ async function request(options = {}) {
         resolve(response);
       });
       res.on('error', err => {
-        reject(err);
+        reject(enhanceError(err, options, null, req));
       });
     };
 
@@ -97,16 +100,22 @@ async function request(options = {}) {
       throw new Error(`Protocol "${protocol}" not supported. Expected "http:" or "https:"`);
     }
 
+    // Handle errors
+    req.on('error', err => {
+      if (req.aborted) {
+        return;
+      }
+      reject(enhanceError(err, options, null, req));
+    });
+
+    // Handle request timeout
     if (timeout) {
       req.setTimeout(timeout, () => {
         req.abort();
-        reject(new Error('request timeout.'));
+        reject(createError('timeout of ' + timeout + 'ms exceeded', options, 'ECONNABORTED', req));
       });
     }
 
-    req.on('error', err => {
-      reject(err);
-    });
     if (data && ['GET', 'HEAD'].indexOf(method) === -1) {
       req.write(data);
     }
@@ -114,4 +123,7 @@ async function request(options = {}) {
   });
 }
 
+function syncRequest(options = {}) {}
+
 module.exports = request;
+module.exports.syncRequest = syncRequest;
