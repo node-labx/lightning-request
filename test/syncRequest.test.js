@@ -1,5 +1,5 @@
 const test = require('ava');
-const { syncRequest } = require('../index');
+const syncRequest = require('../lib/syncRequest');
 
 test('参数 url 校验', (t) => {
   try {
