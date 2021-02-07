@@ -1,5 +1,5 @@
 const test = require('ava');
-const syncRequest = require('../lib/syncRequest');
+const { syncRequest } = require('../index');
 
 test('参数 url 校验', (t) => {
   try {
@@ -12,32 +12,31 @@ test('参数 url 校验', (t) => {
 test('请求协议校验', (t) => {
   try {
     syncRequest({
-      url: 'ftp://api.github.com/repos/node-labx/lightning-request',
+      url: 'ftp://127.0.0.1:3000/',
     });
   } catch (error) {
     t.is(error.message, 'Protocol "ftp:" not supported. Expected "http:" or "https:"');
   }
 });
 
-test('HTTP to HTTPS', (t) => {
+test('简单 HTTP GET 请求 200 响应', (t) => {
   const resp = syncRequest({
-    url: 'http://api.github.com/repos/node-labx/lightning-request',
+    url: 'http://127.0.0.1:3000/200',
   });
-  t.is(resp.statusCode, 301);
+  t.is(resp.statusCode, 200);
 });
 
-test('简单 HTTP GET 请求 ', (t) => {
+test('简单 HTTP GET 请求 301 响应', (t) => {
   const resp = syncRequest({
-    url: 'https://api.github.com/repos/node-labx/lightning-request',
+    url: 'http://127.0.0.1:3000/301',
   });
-
-  t.true([200, 403].indexOf(resp.statusCode) > -1);
+  t.is(resp.statusCode, 301);
 });
 
 test('HTTP GET 请求带 Query 参数', (t) => {
   try {
     const resp = syncRequest({
-      url: 'https://api.github.com/search/repositories',
+      url: 'http://127.0.0.1:3000/200',
       data: {
         q: 'lightning-request',
       },

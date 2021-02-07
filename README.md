@@ -16,8 +16,8 @@ lightning-request is the most lightweight HTTP client for Node, it provides a nu
 
 First, require the library.
 
-```
-const request = require('lightning-request');
+```js
+const { request } = require('lightning-request');
 ```
 
 Then let's make a request in an async function.
