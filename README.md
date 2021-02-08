@@ -61,7 +61,7 @@ These are the available config options for making requests. Only the url is requ
   timeout: 1000, // default is `15000` milliseconds
 
   // `responseType` indicates the type of data that the server will respond with
-  // options are: 'json', 'text', 'buffer'
+  // options are: 'json', 'text', 'buffer'，'stream'
   responseType: 'json', // default
 
   // `agent` define a custom agent to be used when performing http or https requests,

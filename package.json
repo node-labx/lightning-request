@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/node-labx/lightning-request",
   "dependencies": {
+    "pump": "^3.0.0",
     "sync-rpc": "^1.3.6"
   }
 }
