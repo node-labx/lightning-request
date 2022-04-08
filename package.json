@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "⚡⚡⚡Lightweight Node.js HTTP client based on http. ",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "nyc ava --verbose --no-cache --timeout=1m",
     "test:watch": "nyc ava --verbose --watch --no-cache --timeout=1m",
@@ -18,10 +19,6 @@
     "type": "git",
     "url": "git@github.com:node-labx/lightning-request.git"
   },
-  "devDependencies": {
-    "ava": "3.4.0",
-    "nyc": "15.0.0"
-  },
   "keywords": [],
   "author": "kk",
   "license": "MIT",
@@ -31,5 +28,9 @@
   "homepage": "https://github.com/node-labx/lightning-request",
   "dependencies": {
     "sync-rpc": "^1.3.6"
+  },
+  "devDependencies": {
+    "ava": "3.4.0",
+    "nyc": "15.0.0"
   }
 }
